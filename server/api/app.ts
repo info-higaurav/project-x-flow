@@ -9,7 +9,7 @@ app.use(express.json())
 app.use(cors())
 app.use(cookieParser())
 
-import userRoute from '../routes/userRoutes';
+import userRoute from '../routes/user.routes';
 
 app.use("/api/v1/users", userRoute)
 
