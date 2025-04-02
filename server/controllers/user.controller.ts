@@ -1,7 +1,8 @@
 import { Request, Response } from "express"
+import ApiResponse from "../utils/apiResponse"
 
 const healthCheckUp = (req:Request , res:Response)=>{
-    res.status(200).json({message:"Routes are working fine"})
+    return ApiResponse.success([], "Routes are working fine", 200).send(res)
 }
 
 export {
