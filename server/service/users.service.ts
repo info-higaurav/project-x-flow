@@ -2,6 +2,7 @@ import Auth, { IAuth } from "../model/auth.model";
 import User from "../model/user.model";
 import { IAuthInput, IUserInput } from "../validation/user.validation";
 import jwt from 'jsonwebtoken'
+import bcrypt from 'bcrypt'
 
 class UserService {
  
@@ -45,9 +46,14 @@ class UserService {
       return refreshToken;
      }
 
-     async updateAccessToken (userId:string , accessToken:string, refreshToken:string){
+     async updateToken (userId:string , accessToken:string, refreshToken:string){
       const updateAccesstoekn = await Auth.findByIdAndUpdate(userId,{accessToken:accessToken, refreshToken:refreshToken},{new:true}).select("-password -__v")
       return updateAccesstoekn;
+     }
+
+     async comparePassword (password:string, hashedPassword:string){
+         const verifyPassword = await bcrypt.compare(password, hashedPassword)
+         return verifyPassword;
      }
 
     

@@ -5,6 +5,7 @@ const userRoute = Router()
 
 import asyncWrapper from '../utils/asyncWrapper';
 import { 
+    handleLogin,
 healthCheckUp,
 registerUser
 } from '../controllers/user.controller';
@@ -12,8 +13,11 @@ registerUser
 userRoute.route("/health")
     .get(asyncWrapper(healthCheckUp))
 
-userRoute.route("/")
+userRoute.route("/register")
     .post(asyncWrapper(registerUser))
+
+userRoute.route("/login")
+    .post(asyncWrapper(handleLogin))
 
 userRoute.use(apiError)
 
