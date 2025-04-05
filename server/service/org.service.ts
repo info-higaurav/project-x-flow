@@ -1,4 +1,4 @@
-import Org from "../model/organization.mode"
+import Org from "../model/organization.model"
 import { IOrgValSchema } from "../validation/organization.validation"
 
 class OrgService {

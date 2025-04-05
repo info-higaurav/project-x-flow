@@ -8,8 +8,8 @@ export default function apiError (
     res:Response,
     next:NextFunction
 ){
-    if(err instanceof ZodError){
-        console.log(err.issues)
-        return ApiResponse.failure([], err?.issues[0].message, 400).send(res)
+    if(err instanceof ZodError){     
+        console.log(err.issues)   
+        return ApiResponse.failure([], err?.issues[0].message || err.errors[0]?.message, 400).send(res)
     }
 }

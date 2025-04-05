@@ -110,8 +110,36 @@ const handleLogin = async (req:Request, res:Response)=>{
 
 }
 
+const handleCreateUser = async(req:Request, res:Response)=>{
+    const userService = new UserService()
+    
+    const payload:IAuth = req.body;
+    const isUserExists = await userService.isUserExists(payload.email)
+    
+    if(isUserExists){
+        return ApiResponse.failure([],"User already exists",409).send(res);
+    }
+    const userData:IUserInput = {
+        firstName: null,
+        lastName: null,
+        role: "user", 
+    };
+    
+    const user = await userService.createUser(userData);
+    const updateAuthPayload = {
+        ...payload,
+        userId:user?._id,
+        lastLogin: new Date(),
+        isActive: true
+    };
+    const validatedPayload:IAuthInput = authVal.parse(updateAuthPayload);
+    const createUser = await userService.createCredential(validatedPayload);
+    return ApiResponse.success([createUser], "Credentials has been created",201).send(res);
+
+}
 export {
     healthCheckUp,
     registerUser,
-    handleLogin
+    handleLogin,
+    handleCreateUser
 }
