@@ -13,10 +13,12 @@ import userRoute from '../routes/user.routes';
 import orgRoutes from '../routes/org.routes';
 import projectRoutes from '../routes/project.routes';
 import teamRoute from '../routes/team.route';
+import taskRoutes from '../routes/task.route';
 
 app.use("/api/v1/users", userRoute)
 app.use("/api/v1/org" , orgRoutes)
 app.use("/api/v1/project", projectRoutes)
 app.use("/api/v1/team", teamRoute)
+app.use("/api/v1/task", taskRoutes)
 
 export default app;
