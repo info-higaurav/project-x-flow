@@ -10,7 +10,9 @@ app.use(cors())
 app.use(cookieParser())
 
 import userRoute from '../routes/user.routes';
+import orgRoutes from '../routes/org.routes';
 
 app.use("/api/v1/users", userRoute)
+app.use("/api/v1/org" , orgRoutes)
 
 export default app;
