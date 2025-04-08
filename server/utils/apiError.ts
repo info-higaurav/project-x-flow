@@ -12,4 +12,5 @@ export default function apiError (
         console.log(err.issues)   
         return ApiResponse.failure([], err?.issues[0].message || err.errors[0]?.message, 400).send(res)
     }
+    console.log(err)
 }
